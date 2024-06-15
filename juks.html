@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tilgang nektet</title>
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="extension-src 'none';">
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+    }
+
+    h1 {
+      color: rgb(255, 255, 255);
+    }
+
+    .gif-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      z-index: 1000;
+    }
+
+    .gif-overlay img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<audio autoplay>
+  <source src="juks.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<div id="gifOverlay" class="gif-overlay">
+  <img src="juks.gif" alt="Overlay GIF">
+</div>
+
+<div class="w3-display-middle">
+  <h1 class="w3-jumbo w3-animate-top w3-center">
+    <code>Kritisk advarsel</code>
+  </h1>
+  <hr class="w3-border-white w3-animate-left" style="margin:auto;width:50%">
+  <h3 class="w3-center w3-animate-right">Det er forbudt å jukse, og skjer dette igjen, er spillet deres <span style="color:red;">over</span>.</h3>
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+    var gifOverlay = document.getElementById('gifOverlay');
+    var oneSecond = 1000; // 1 second = 1000 milliseconds
+    var playGifDuration = 0.457 * oneSecond; // Duration for playing GIF
+    var waitDuration = 5.175 * oneSecond; // Wait duration
+    var playGifDuration2 = 2.5 * oneSecond; // Second play duration
+    var waitDuration2 = 1 * oneSecond; // Second wait duration
+    var playGifDuration3 = 1.5 * oneSecond; // Third play duration
+
+    // Part 1: Play GIF as soon as the website loads
+    gifOverlay.style.visibility = 'visible';
+    setTimeout(function() {
+      gifOverlay.style.visibility = 'hidden';
+
+      // Part 2: Function to handle the intervals
+      var handleIntervals = function(repeatCount) {
+        setTimeout(function() {
+          gifOverlay.style.visibility = 'visible';
+          setTimeout(function() {
+            gifOverlay.style.visibility = 'hidden';
+            setTimeout(function() {
+              gifOverlay.style.visibility = 'visible';
+              setTimeout(function() {
+                gifOverlay.style.visibility = 'hidden';
+                if (repeatCount > 0) {
+                  handleIntervals(repeatCount - 1); // Repeat Part 2
+                }
+              }, playGifDuration3);
+            }, waitDuration2);
+          }, playGifDuration2);
+        }, waitDuration);
+      };
+
+      // Start Part 2 with 4 repetitions
+      handleIntervals(4);
+
+    }, playGifDuration);
+  });
+</script>
+
+</body>
+</html>

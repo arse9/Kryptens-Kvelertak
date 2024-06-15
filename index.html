@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Innlogging</title>
+    <style>
+        /* Add this style to give a disabled effect to the username input */
+        .input-field[readonly] {
+            background-color: #e4e2e2; /* Light grey background */
+            cursor: not-allowed; /* Shows a 'no entry' cursor on hover */
+        }
+    </style>
 </head>
 <body>
     <div class="login-box">
@@ -13,7 +20,8 @@
             Innlogging
         </div>
         <div class="input-box">
-            <input type="text" id="username" class="input-field" placeholder="Brukernavn" autocomplete="off" required>
+            <!-- Set the value to the username and add the readonly attribute -->
+            <input type="text" id="username" class="input-field" value="kryptens_kvelertak" placeholder="Brukernavn" autocomplete="off" readonly>
         </div>
         <div class="input-box">
             <input type="password" id="password" class="input-field" placeholder="Passord" autocomplete="off" required>
@@ -23,6 +31,31 @@
             <button class="submit-btn" id="submit">Logg inn</button>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          "use strict";
+        
+          // Disable text selection for the entire page
+          document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+          });
+          
+          // Disable right-click on the entire document
+          document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+          });
+        
+          // Redirect to '404.html' when developer tools are opened
+          function checkDevTools() {
+            if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+              window.location.href = 'juks.html';
+            }
+          }
+        
+          // Check for developer tools periodically
+          setInterval(checkDevTools, 1000);
+        });
+        </script>
 
     <script>
         // Get references to the form elements
@@ -33,23 +66,22 @@
 
         // Add an event listener to the submit button
         submitButton.addEventListener('click', () => {
-    const enteredUsername = usernameInput.value;
-    const enteredPassword = passwordInput.value;
+            const enteredUsername = usernameInput.value;
+            const enteredPassword = passwordInput.value;
 
-    // Check if the credentials are correct (you can replace this with your own logic)
-    if (enteredUsername === 'G1ng3r' && enteredPassword === '1234') {
-        // Redirect to velkommen.html
-        window.location.href = 'velkommen.html';
-    } else {
-        // Display an error message
-        errorDisplay.textContent = 'Feil kontoinformasjon. Vennligst prøv igjen.';
-        
-        // Clear the input fields
-        usernameInput.value = '';
-        passwordInput.value = '';
-    }
-});
-
+            // Check if the credentials are correct (you can replace this with your own logic)
+            if (enteredUsername === 'G1ng3r' && enteredPassword === 'correct_password') { // Replace 'correct_password' with the actual password
+                // Redirect to velkommen.html
+                window.location.href = 'velkommen.html';
+            } else {
+                // Display an error message
+                errorDisplay.textContent = 'Feil kontoinformasjon. Vennligst prøv igjen.';
+                
+                // Clear the input fields
+                usernameInput.value = 'G1ng3r'; // Keep the username unchanged
+                passwordInput.value = '';
+            }
+        });
     </script>
 </body>
 </html>
