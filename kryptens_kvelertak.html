@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kryptens Kvelertak</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+  }
+  .digit {
+    opacity: 0;
+    position: absolute;
+  }
+</style>
+</head>
+<body>
+<div id="code-container">
+  <span class="digit" id="digit1">1</span>
+  <span class="digit" id="digit2">2</span>
+  <span class="digit" id="digit3">3</span>
+  <span class="digit" id="digit4">4</span>
+</div>
+<audio id="beep-sound" src="beep.mp3"></audio>
 
+<script>
+  function showDigit(digitId) {
+    document.getElementById(digitId).style.opacity = 1;
+    document.getElementById('beep-sound').play();
+  }
+
+  window.onload = function() {
+    setTimeout(function() { showDigit('digit1'); }, 1000);
+    setTimeout(function() { showDigit('digit2'); }, 2000);
+    setTimeout(function() { showDigit('digit3'); }, 3000);
+    setTimeout(function() { showDigit('digit4'); }, 4000);
+  };
+</script>
+</body>
+</html>
