@@ -24,8 +24,7 @@
   .digit {
     font-size: 5em; /* Larger font size */
     font-weight: bold;
-    opacity: 0;
-    transition: opacity 1s ease;
+    opacity: 0; /* Set to 0 to hide before JavaScript shows them */
   }
 </style>
 </head>
@@ -36,11 +35,11 @@
   <span class="digit" id="digit3">3</span>
   <span class="digit" id="digit4">4</span>
 </div>
-<audio id="beep-sound" src="beep.mp3"></audio>
+<audio id="beep-sound" src="impact.mp3"></audio>
 
 <script>
   function showDigit(digitId) {
-    document.getElementById(digitId).style.opacity = 1;
+    document.getElementById(digitId).style.opacity = 1; // Instantly show the digit
     document.getElementById('beep-sound').play();
   }
 
