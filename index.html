@@ -55,7 +55,7 @@
           // Check for developer tools periodically
           setInterval(checkDevTools, 1000);
         });
-        </script>
+    </script>
 
     <script>
         // Get references to the form elements
@@ -64,13 +64,13 @@
         const submitButton = document.getElementById('submit');
         const errorDisplay = document.getElementById('error-message');
 
-        // Add an event listener to the submit button
-        submitButton.addEventListener('click', () => {
+        // Function to handle the login process
+        function handleLogin() {
             const enteredUsername = usernameInput.value;
             const enteredPassword = passwordInput.value;
 
-            // Check if the credentials are correct (you can replace this with your own logic)
-            if (enteredUsername === '' && enteredPassword === '123') { // Replace 'correct_password' with the actual password
+            // Check if the credentials are correct
+            if (enteredUsername === 'kryptens_kvelertak' && enteredPassword === '123') { // Replace '123' with the actual password
                 // Redirect to velkommen.html
                 window.location.href = 'velkommen.html';
             } else {
@@ -80,6 +80,16 @@
                 // Clear the input fields
                 usernameInput.value = 'kryptens_kvelertak'; // Keep the username unchanged
                 passwordInput.value = '';
+            }
+        }
+
+        // Add an event listener to the submit button
+        submitButton.addEventListener('click', handleLogin);
+
+        // Add an event listener for the 'Enter' key on the password input
+        passwordInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleLogin();
             }
         });
     </script>
