@@ -1,108 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Innlogging</title>
-    <style>
-        /* Add this style to give a disabled effect to the username input */
-        .input-field[readonly] {
-            background-color: #e4e2e2; /* Light grey background */
-            cursor: not-allowed; /* Shows a 'no entry' cursor on hover */
-        }
-    </style>
+  <title>Tilgang nektet</title>
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="extension-src 'none';">
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+    }
+
+    h1 {
+      color: rgb(255, 255, 255);
+    }
+
+    .gif-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      z-index: 1000;
+    }
+
+    .gif-overlay img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-    <div class="login-box">
-        <div class="login-header">
-            Innlogging
-        </div>
-        <div class="input-box">
-            <!-- Set the value to the username and add the readonly attribute -->
-            <input type="text" id="username" class="input-field" value="kryptens_kvelertak" placeholder="Brukernavn" autocomplete="off" readonly>
-        </div>
-        <div class="input-box">
-            <input type="password" id="password" class="input-field" placeholder="Passord" autocomplete="off" required>
-            <p id="error-message" class="error-message"></p> <!-- Display error message here -->
-        </div>
-        <div class="input-submit">
-            <button class="submit-btn" id="submit">Logg inn</button>
-        </div>
-    </div>
 
-    <div id="redirecting-message" style="display: none;">
-        Redirecting in <span id="countdown">3</span>
-    </div>
+<audio autoplay>
+  <source src="juks.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          "use strict";
-        
-          // Disable text selection for the entire page
-          document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-          });
-          
-          // Disable right-click on the entire document
-          document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-          });
-        
-          // Redirect to '404.html' when developer tools are opened
-          function checkDevTools() {
-            if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-              window.location.href = 'juks.html';
-            }
-          }
-        
-          // Check for developer tools periodically
-          setInterval(checkDevTools, 1000);
-        });
+<div id="gifOverlay" class="gif-overlay">
+  <img src="juks.gif" alt="Overlay GIF">
+</div>
 
-        // Get references to the form elements
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-        const submitButton = document.getElementById('submit');
-        const errorDisplay = document.getElementById('error-message');
+<div class="w3-display-middle">
+  <h1 class="w3-jumbo w3-animate-top w3-center">
+    <code>Kritisk advarsel</code>
+  </h1>
+  <hr class="w3-border-white w3-animate-left" style="margin:auto;width:50%">
+  <h3 class="w3-center w3-animate-right">Det er forbudt å jukse, og skjer dette igjen, er spillet deres <span style="color:red;">over</span>.</h3>
+</div>
 
-        // Add an event listener to the submit button
-        submitButton.addEventListener('click', () => {
-            const enteredUsername = usernameInput.value;
-            const enteredPassword = passwordInput.value;
+<div id="countdownMessage" class="w3-display-bottommiddle w3-animate-opacity" style="display: none;">
+  <h2>Redirecting in <span id="countdown">3</span>...</h2>
+</div>
 
-            // Check if the credentials are correct (you can replace this with your own logic)
-            if (enteredUsername === 'kryptens_kvelertak' && enteredPassword === '123') { // Replace '123' with the actual password
-                // Redirect to velkommen.html
-                window.location.href = 'velkommen.html';
-            } else {
-                // Display an error message
-                errorDisplay.textContent = 'Feil kontoinformasjon. Vennligst prøv igjen.';
-                
-                // Clear the input fields
-                usernameInput.value = 'kryptens_kvelertak'; // Keep the username unchanged
-                passwordInput.value = '';
+<script>
+  window.addEventListener('load', function() {
+    var gifOverlay = document.getElementById('gifOverlay');
+    var oneSecond = 1000; // 1 second = 1000 milliseconds
+    var playGifDuration = 0.457 * oneSecond; // Duration for playing GIF
+    var waitDuration = 5.175 * oneSecond; // Wait duration
+    var playGifDuration2 = 2.5 * oneSecond; // Second play duration
+    var waitDuration2 = 1 * oneSecond; // Second wait duration
+    var playGifDuration3 = 1.5 * oneSecond; // Third play duration
 
-                // Show the redirecting message
-                document.getElementById('redirecting-message').style.display = 'block';
+    // Part 1: Play GIF as soon as the website loads
+    gifOverlay.style.visibility = 'visible';
+    setTimeout(function() {
+      gifOverlay.style.visibility = 'hidden';
 
-                // Start the countdown
-                let countdownNumber = 3;
-                const countdownElement = document.getElementById('countdown');
-                countdownElement.textContent = countdownNumber;
+      // Part 2: Function to handle the intervals
+      var handleIntervals = function(repeatCount) {
+        setTimeout(function() {
+          gifOverlay.style.visibility = 'visible';
+          setTimeout(function() {
+            gifOverlay.style.visibility = 'hidden';
+            setTimeout(function() {
+              gifOverlay.style.visibility = 'visible';
+              setTimeout(function() {
+                gifOverlay.style.visibility = 'hidden';
+                if (repeatCount > 0) {
+                  handleIntervals(repeatCount - 1); // Repeat Part 2
+                } else {
+                  // Start the countdown after the last GIF play
+                  startCountdown(3); // Start countdown from 3 seconds
+                }
+              }, playGifDuration3);
+            }, waitDuration2);
+          }, playGifDuration2);
+        }, waitDuration);
+      };
 
-                const countdownInterval = setInterval(() => {
-                    countdownNumber--;
-                    countdownElement.textContent = countdownNumber;
-                    if (countdownNumber <= 0) {
-                        clearInterval(countdownInterval);
-                        // Redirect to index.html after the countdown
-                        window.location.href = 'index.html';
-                    }
-                }, 1000);
-            }
-        });
-    </script>
+      // Start Part 2 with 4 repetitions
+      handleIntervals(4);
+
+    }, playGifDuration);
+
+    // Function to start the countdown and redirect
+    function startCountdown(duration) {
+      var countdownElement = document.getElementById('countdown');
+      var countdownMessage = document.getElementById('countdownMessage');
+      countdownMessage.style.display = 'block'; // Show the countdown message
+      var remainingTime = duration;
+
+      var countdownInterval = setInterval(function() {
+        countdownElement.textContent = remainingTime;
+        if (remainingTime <= 0) {
+          clearInterval(countdownInterval);
+          window.location.href = 'index.html'; // Redirect to index.html
+        }
+        remainingTime--;
+      }, 1000);
+    }
+  });
+</script>
+
 </body>
 </html>
