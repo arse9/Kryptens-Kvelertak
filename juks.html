@@ -5,6 +5,23 @@
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="extension-src 'none';">
   <meta charset="UTF-8">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $(document).on("keydown", function(e) {
+        e = e || window.event;
+        if (e.ctrlKey) {
+            var c = e.which || e.keyCode;
+            if (c == 82) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+    });
+});
+</script>
+  
   <style>
     body {
       margin: 0;
