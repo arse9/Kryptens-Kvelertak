@@ -7,24 +7,22 @@
     <link rel="stylesheet" href="style.css">
     <title>Innlogging</title>
 
-    <script>
-window.onload = function() {
-    window.document.body.onkeydown = function() {
-        if (event.ctrlKey) {
-            event.stopPropagation();
-            event.preventDefault();
-            try {
-                event.keyCode = 0;
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $(document).on("keydown", function(e) {
+        e = e || window.event;
+        if (e.ctrlKey) {
+            var c = e.which || e.keyCode;
+            if (c == 82) {
+                e.preventDefault();
+                e.stopPropagation();
             }
-            catch (event) {
-
-            }
-            return false;
         }
-        return true;
-    }
-}
-    </script>
+    });
+});
+</script>
+    
     <style>
         /* Add this style to give a disabled effect to the username input */
         .input-field[readonly] {
